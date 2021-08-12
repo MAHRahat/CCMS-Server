@@ -44,7 +44,7 @@ def users_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes((IsAuthenticated,))
 def user_details(request, pk):
-    user_permitted = (not request.user.is_employee) and request.user.user_id == pk and request.method != 'DELETE'
+    user_permitted = (not request.user.is_employee) and int(request.user.user_id) == int(pk) and request.method != 'DELETE'
     employee_permitted = request.user.is_employee and request.method != 'DELETE'
     if not (user_permitted or employee_permitted or request.user.is_superuser):
         raise PermissionError
@@ -140,7 +140,7 @@ def complaints_list(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes((IsAuthenticated,))
 def complaints_details(request, pk):
-    user_permitted = (not request.user.is_employee) and request.user.user_id == pk and request.method in SAFE_METHODS
+    user_permitted = (not request.user.is_employee) and int(request.user.user_id) == int(pk) and request.method in SAFE_METHODS
     employee_permitted = request.user.is_employee and request.method != 'DELETE'
     if not (user_permitted or employee_permitted or request.user.is_superuser):
         raise PermissionError
