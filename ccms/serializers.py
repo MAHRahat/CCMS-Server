@@ -40,6 +40,9 @@ class CategoriesSerializer(serializers.ModelSerializer):
 
 
 class ComplaintsSerializer(serializers.ModelSerializer):
+    citizen_name = serializers.ReadOnlyField()
+    category_name = serializers.ReadOnlyField()
+
     class Meta:
         model = Complaints
         fields = "__all__"

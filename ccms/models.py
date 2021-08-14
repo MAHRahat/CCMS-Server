@@ -60,3 +60,9 @@ class Complaints(models.Model):
 
     def __str__(self):
         return f"{self.description}"
+
+    def citizen_name(self):
+        return self.citizen_id.name
+
+    def category_name(self):
+        return self.category_id.category
